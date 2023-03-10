@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    public PlayerMovement movement;
     private void OnCollisionEnter(Collision other) {
-        Debug.Log(other.collider.name);
+        if (other.collider.tag == "Obstacle") {
+            movement.enabled = false;
+        }
     }
 }
