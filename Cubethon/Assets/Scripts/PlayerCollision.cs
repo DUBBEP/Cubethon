@@ -3,7 +3,26 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     public PlayerMovement movement;
-    
+    public Rigidbody rb;
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if (other.GetComponent<Collider>().tag == "Obstacle") 
+        {
+            rb.constraints &= ~RigidbodyConstraints.FreezeRotation;
+            movement.unfrozen = true;         
+        }
+        if (other.GetComponent<Collider>().tag == "UnfreezeTrigger")
+        {
+            rb.constraints &= ~RigidbodyConstraints.FreezeRotation;
+            movement.unfrozen = true;         
+        }    
+        if (other.GetComponent<Collider>().tag == "FreezeTrigger")
+        {
+            movement.unfrozen = false;
+        }
+    }
+
     private void OnCollisionEnter(Collision other) {
         if (other.collider.tag == "Obstacle") {
             movement.enabled = false;

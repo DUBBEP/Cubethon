@@ -2,21 +2,42 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody rb;
+    public Vector3 groundDistance = new Vector3(1, 1, 1);
+    private bool isGrounded;
 
+    public LayerMask groundMask;
+    public Rigidbody rb;
+    public bool unfrozen = false;
     public float forwardForce = 2000f;
     public float horizontalForce = 500f;
-    // Start is called before the first frame update
-    void Start() {
+
+
+    void Update()
+    {
+        isGrounded = Physics.CheckBox(transform.position, groundDistance, transform.rotation, groundMask);
+
+        if (rb.position.y < -1) {
+            FindObjectOfType<GameManager>().EndGame();
+        }
+
+        if (rb.position.x > 7.5f || rb.position.x < -7.5f)
+        {
+            rb.constraints &= ~RigidbodyConstraints.FreezeRotation;   
+        } else if (!unfrozen && isGrounded)
+        {
+            ResetRotation();
+        }
+
+        void ResetRotation()
+        {
+            rb.rotation = Quaternion.Euler(0, 0, 0);
+            rb.constraints = RigidbodyConstraints.FreezeRotation;                 
+        }
 
     }
 
-    // Update is called once per frame
-    void Update() {
-        //Add forward Force
-    }
-
-    void FixedUpdate() {
+    void FixedUpdate() 
+    {
         rb.AddForce(0, 0, forwardForce * Time.deltaTime);        
 
         if ( Input.GetKey("d") ) {
@@ -25,10 +46,6 @@ public class PlayerMovement : MonoBehaviour
 
         if ( Input.GetKey("a") ) {
             rb.AddForce(-horizontalForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-        }
-
-        if (rb.position.y < -1) {
-            FindObjectOfType<GameManager>().EndGame();
         }
     }
 }
