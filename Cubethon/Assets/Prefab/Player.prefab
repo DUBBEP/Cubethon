@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec59d8c271933c45a5e20b27c01e3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundDistance: {x: 0.25, y: 0.25, z: 0.25}
+  groundDistance: {x: 0.5, y: 0.5, z: 0.5}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -136,6 +136,7 @@ MonoBehaviour:
   unfrozen: 0
   forwardForce: 3000
   horizontalForce: 100
+  horizontalSpeedCap: 20
 --- !u!114 &5802667316713066508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,3 +151,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 5802667316713066509}
   rb: {fileID: 5802667316713066546}
+  hitMat: {fileID: 2100000, guid: dabdf29328ce35e4b81c58e90c493b71, type: 2}
+  playerMat: {fileID: 2100000, guid: 9795491dbc3121643a2c6e9dd9b5773c, type: 2}

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public bool unfrozen = false;
     public float forwardForce = 2000f;
     public float horizontalForce = 500f;
+    public float horizontalSpeedCap = 40f;
 
 
     void Update()
@@ -41,11 +42,17 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(0, 0, forwardForce * Time.deltaTime);        
 
         if ( Input.GetKey("d") ) {
-            rb.AddForce(horizontalForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            if (rb.velocity.x <= horizontalSpeedCap)
+            {
+                rb.AddForce(horizontalForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            }
         }
 
         if ( Input.GetKey("a") ) {
-            rb.AddForce(-horizontalForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            if (rb.velocity.x >= -horizontalSpeedCap)
+            {
+                rb.AddForce(-horizontalForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            }
         }
     }
 }
