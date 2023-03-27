@@ -151,5 +151,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 5802667316713066509}
   rb: {fileID: 5802667316713066546}
-  hitMat: {fileID: 2100000, guid: dabdf29328ce35e4b81c58e90c493b71, type: 2}
-  playerMat: {fileID: 2100000, guid: 9795491dbc3121643a2c6e9dd9b5773c, type: 2}
+  hitMat: {fileID: 2100000, guid: 721bc43884a29504e974ddfa14040c4d, type: 2}
+  playerMat: {fileID: 2100000, guid: 9c586eb6584f0e14b8bf5dacfa5a6eb7, type: 2}

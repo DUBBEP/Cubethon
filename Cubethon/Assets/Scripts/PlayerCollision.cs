@@ -51,6 +51,7 @@ public class PlayerCollision : MonoBehaviour
         if (other.collider.tag == "Obstacle") {
             movement.enabled = false;
             FindObjectOfType<GameManager>().EndGame();
+            flashTime = 0.3f; 
         }
     }
 }
