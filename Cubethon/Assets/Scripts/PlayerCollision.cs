@@ -34,7 +34,7 @@ public class PlayerCollision : MonoBehaviour
         {
             rb.constraints &= ~RigidbodyConstraints.FreezeRotation;
             movement.unfrozen = true;
-            flashTime = 0.3f;        
+            flashTime = 0.1f;        
         }
         if (other.GetComponent<Collider>().tag == "UnfreezeTrigger")
         {
@@ -51,7 +51,7 @@ public class PlayerCollision : MonoBehaviour
         if (other.collider.tag == "Obstacle") {
             movement.enabled = false;
             FindObjectOfType<GameManager>().EndGame();
-            flashTime = 0.3f; 
+            flashTime = 20f; 
         }
     }
 }
